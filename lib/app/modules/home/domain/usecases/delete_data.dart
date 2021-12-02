@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'package:flutter_todo/app/modules/home/repository/todo_repository_interface.dart';
+import 'package:flutter_todo/app/modules/home/infra/repository/todo_repository_interface.dart';
 
 abstract class IDeleteTodo {
   Future deleteTodo(DocumentReference reference);

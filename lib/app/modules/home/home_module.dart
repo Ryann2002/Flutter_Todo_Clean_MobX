@@ -3,11 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_todo/app/modules/home/domain/usecases/delete_data.dart';
 import 'package:flutter_todo/app/modules/home/domain/usecases/load_data.dart';
 import 'package:flutter_todo/app/modules/home/domain/usecases/save.dart';
-import 'package:flutter_todo/app/modules/home/repository/todo_repository.dart';
-import 'package:flutter_todo/app/modules/home/repository/todo_repository_interface.dart';
 import '../home/home_store.dart';
-
 import 'home_page.dart';
+import 'infra/repository/todo_repository.dart';
+import 'infra/repository/todo_repository_interface.dart';
 
 class HomeModule extends Module {
   @override

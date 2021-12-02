@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_todo/app/modules/home/home_store.dart';
-import 'package:flutter_todo/app/modules/home/models/todo_model.dart';
+
+import 'infra/models/todo_model.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
