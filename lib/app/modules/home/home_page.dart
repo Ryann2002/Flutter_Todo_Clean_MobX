@@ -7,7 +7,7 @@ import 'infra/models/todo_model.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
-  const HomePage({this.title = "Home"});
+  const HomePage({Key? key, this.title = "Home"}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -65,6 +65,10 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
                           ? TextDecoration.lineThrough
                           : TextDecoration.none),
                 ),
+                subtitle: Text(
+                  todo.descricao,
+                  style: const TextStyle(fontSize: 23.0),
+                ),
               );
             },
           );
@@ -84,13 +88,32 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
         builder: (_) {
           return AlertDialog(
             title: Text(model!.title.isNotEmpty ? "Edição" : "Adicionar Novo"),
-            content: TextFormField(
-              initialValue: model.title,
-              onChanged: (value) => model!.title = value,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: "Titulo",
-              ),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    initialValue: model.title,
+                    onChanged: (value) => model!.title = value,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Titulo",
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    initialValue: model.title,
+                    onChanged: (value) => model!.descricao = value,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Descricao",
+                    ),
+                  ),
+                ),
+              ],
             ),
             actions: [
               TextButton(

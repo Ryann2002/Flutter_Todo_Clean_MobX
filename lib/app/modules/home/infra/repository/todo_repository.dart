@@ -23,8 +23,12 @@ class TodoRepository implements ITodoRepository {
 
   @override
   Future add(TodoEntity model) async {
-    return await FirebaseFirestore.instance.collection('todo').add(
-        {'title': model.title, 'check': model.check, 'time': DateTime.now()});
+    return await dataSource.collection('todo').add({
+      'title': model.title,
+      'check': model.check,
+      'descricao': model.descricao,
+      'time': DateTime.now()
+    });
   }
 
   @override
@@ -32,6 +36,7 @@ class TodoRepository implements ITodoRepository {
     return await reference.update({
       'title': model.title,
       'check': model.check,
+      'descricao': model.descricao,
     });
   }
 
