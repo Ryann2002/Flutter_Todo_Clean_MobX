@@ -1,48 +1,32 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_todo/app/home/infra/external/data_interface.dart';
 
 import '../../domain/repository/todo_repository_interface.dart';
 import '../models/todo_model.dart';
 import '../../domain/entities/todo_entity.dart';
 
 class TodoRepository implements ITodoRepository {
-  final FirebaseFirestore dataSource;
+  final IDataSource dataSource;
 
   TodoRepository(this.dataSource);
 
   @override
   Stream<List<TodoEntity>> getTodos() {
-    return dataSource
-        .collection("todo")
-        .orderBy('time')
-        .snapshots()
-        .map((QuerySnapshot query) {
-      return query.docs.map((docs) {
-        return TodoModel.fromDocs(docs);
-      }).toList();
-    });
+    return dataSource.getTodos();
   }
 
   @override
   Future add(TodoEntity model) async {
-    return await dataSource.collection('todo').add({
-      'title': model.title,
-      'check': model.check,
-      'descricao': model.descricao,
-      'time': DateTime.now()
-    });
+    return dataSource.add(model);
   }
 
   @override
   Future update(DocumentReference reference, TodoEntity model) async {
-    return await reference.update({
-      'title': model.title,
-      'check': model.check,
-      'descricao': model.descricao,
-    });
+    return dataSource.update(reference, model);
   }
 
   @override
   Future delete(DocumentReference<Object?> reference) async {
-    await reference.delete();
+    await dataSource.delete(reference);
   }
 }

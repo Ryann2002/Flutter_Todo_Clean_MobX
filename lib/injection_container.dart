@@ -3,6 +3,8 @@ import 'package:flutter_todo/app/home/domain/repository/todo_repository_interfac
 import 'package:flutter_todo/app/home/domain/usecases/delete_data.dart';
 import 'package:flutter_todo/app/home/domain/usecases/load_data.dart';
 import 'package:flutter_todo/app/home/domain/usecases/save.dart';
+import 'package:flutter_todo/app/home/external/datasource/firebase_data.dart';
+import 'package:flutter_todo/app/home/infra/external/data_interface.dart';
 import 'package:flutter_todo/app/home/infra/repository/todo_repository.dart';
 
 import 'package:get_it/get_it.dart';
@@ -23,6 +25,7 @@ Future<void> init() async {
   sl.registerLazySingleton<ISaveTodo>(() => SaveTodoImpl(sl()));
   sl.registerLazySingleton<IDeleteTodo>(() => DeleteTodoImpl(sl()));
   sl.registerLazySingleton<ILoadData>(() => LoadDataImpl(sl()));
+  sl.registerLazySingleton<IDataSource>(() => FirebaseDataSource(sl()));
 
   //! Repository
   sl.registerLazySingleton<ITodoRepository>(() => TodoRepository(sl()));
