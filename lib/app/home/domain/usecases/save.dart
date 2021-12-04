@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_todo/app/modules/home/domain/entities/todo_entity.dart';
-import 'package:flutter_todo/app/modules/home/infra/repository/todo_repository_interface.dart';
+import '../repository/todo_repository_interface.dart';
+import '../entities/todo_entity.dart';
 
 abstract class ISaveTodo {
   Future save(DocumentReference? reference, TodoEntity todo);

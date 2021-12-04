@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_todo/app/modules/home/domain/usecases/delete_data.dart';
-import 'package:flutter_todo/app/modules/home/domain/usecases/load_data.dart';
-import 'package:flutter_todo/app/modules/home/domain/usecases/save.dart';
-import 'package:flutter_todo/app/modules/home/infra/models/todo_model.dart';
-
+import 'package:flutter_todo/app/home/domain/entities/todo_entity.dart';
+import '../../domain/usecases/load_data.dart';
+import '../../domain/usecases/save.dart';
+import '../../domain/usecases/delete_data.dart';
+import '../../infra/models/todo_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -13,9 +13,9 @@ class HomeStore = HomeStoreBase with _$HomeStore;
 abstract class HomeStoreBase with Store {
   final ILoadData loadData;
   final ISaveTodo saveTodo;
-  final DeleteTodoImpl deleteTodo;
+  final IDeleteTodo deleteTodo;
   @observable
-  ObservableStream<List<TodoModel>>? todoList;
+  ObservableStream<List<TodoEntity>>? todoList;
 
   @action
   getTodoList() {

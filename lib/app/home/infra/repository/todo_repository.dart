@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_todo/app/modules/home/domain/entities/todo_entity.dart';
-import 'package:flutter_todo/app/modules/home/infra/models/todo_model.dart';
-import 'package:flutter_todo/app/modules/home/infra/repository/todo_repository_interface.dart';
+
+import '../../domain/repository/todo_repository_interface.dart';
+import '../models/todo_model.dart';
+import '../../domain/entities/todo_entity.dart';
 
 class TodoRepository implements ITodoRepository {
   final FirebaseFirestore dataSource;
@@ -9,7 +10,7 @@ class TodoRepository implements ITodoRepository {
   TodoRepository(this.dataSource);
 
   @override
-  Stream<List<TodoModel>> getTodos() {
+  Stream<List<TodoEntity>> getTodos() {
     return dataSource
         .collection("todo")
         .orderBy('time')

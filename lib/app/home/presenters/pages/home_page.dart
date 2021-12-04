@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_todo/app/modules/home/home_store.dart';
+import 'package:get_it/get_it.dart';
 
-import 'infra/models/todo_model.dart';
+import '../../infra/models/todo_model.dart';
+import '../stores/home_store.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -13,9 +13,10 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends ModularState<HomePage, HomeStore> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    final store = GetIt.I.get<HomeStore>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Todo List'),
@@ -86,6 +87,7 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
     showDialog(
         context: context,
         builder: (_) {
+          final store = GetIt.I.get<HomeStore>();
           return AlertDialog(
             title: Text(model!.title.isNotEmpty ? "Edição" : "Adicionar Novo"),
             content: Column(
@@ -118,12 +120,12 @@ class _HomePageState extends ModularState<HomePage, HomeStore> {
             actions: [
               TextButton(
                   onPressed: () {
-                    Modular.to.pop();
+                    Navigator.pop(context);
                   },
                   child: const Text("Cancelar")),
               TextButton(
                 onPressed: () {
-                  Modular.to.pop();
+                  Navigator.pop(context);
                   store.save(reference: model!.reference, model: model);
                 },
                 child: Text(model.title.isEmpty ? "Adicionar Novo" : "Salvar"),

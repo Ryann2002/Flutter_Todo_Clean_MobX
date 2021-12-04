@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_todo/app/modules/home/domain/entities/todo_entity.dart';
+import '../../domain/entities/todo_entity.dart';
 
 class TodoModel extends TodoEntity {
   DocumentReference? reference;

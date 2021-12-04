@@ -12,13 +12,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
   final _$todoListAtom = Atom(name: 'HomeStoreBase.todoList');
 
   @override
-  ObservableStream<List<TodoModel>>? get todoList {
+  ObservableStream<List<TodoEntity>>? get todoList {
     _$todoListAtom.reportRead();
     return super.todoList;
   }
 
   @override
-  set todoList(ObservableStream<List<TodoModel>>? value) {
+  set todoList(ObservableStream<List<TodoEntity>>? value) {
     _$todoListAtom.reportWrite(value, super.todoList, () {
       super.todoList = value;
     });
